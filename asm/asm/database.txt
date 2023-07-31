@@ -1,0 +1,50 @@
+-- Tạo cơ sở dữ liệu `customer_directory`
+CREATE DATABASE IF NOT EXISTS `customer_directory` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `customer_directory`;
+
+-- Tạo bảng `customer`
+CREATE TABLE `customer` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `firstName` varchar(45) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `lastName` varchar(45) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `email` varchar(45) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Đổ dữ liệu vào bảng `customer`
+INSERT INTO `customer` (`id`, `firstName`, `lastName`, `email`) VALUES
+(1, 'Ngoc', 'Tuan', 'ngoc@gmail.com'),
+(2, 'Quan', 'Anh', 'quan@gmail.com'),
+(3, 'Tuan', 'Kieu', 'tuan@gmail.com');
+
+-- Tạo cơ sở dữ liệu `spring_security`
+CREATE DATABASE IF NOT EXISTS `spring_security2` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `spring_security2`;
+
+-- Tạo bảng `users`
+CREATE TABLE `users` (
+  `username` varchar(55) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `password` char(68) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `enabled` tinyint(1) NOT NULL,
+  PRIMARY KEY (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Đổ dữ liệu vào bảng `users`
+INSERT INTO `users` (`username`, `password`, `enabled`) VALUES
+('ngoc', '{bcrypt}$2a$12$4pjqokIrqPDPjiEmlvbY/eQOICD.LWLqzWLItMY/ZaZxtFedOD.wa', 1),
+('quan', '{bcrypt}$2a$12$4pjqokIrqPDPjiEmlvbY/eQOICD.LWLqzWLItMY/ZaZxtFedOD.wa', 1),
+('tuan', '{bcrypt}$2a$12$4pjqokIrqPDPjiEmlvbY/eQOICD.LWLqzWLItMY/ZaZxtFedOD.wa', 0);
+
+-- Tạo bảng `authorities`
+CREATE TABLE `authorities` (
+  `username` varchar(55) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `authority` varchar(55) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  KEY `khong` (`username`,`authority`) USING BTREE,
+  CONSTRAINT `khong` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Đổ dữ liệu vào bảng `authorities`
+INSERT INTO `authorities` (`username`, `authority`) VALUES
+('ngoc', 'ROLE_EMPLOYEE'),
+('quan', 'ROLE_ADMIN'),
+('tuan', 'ROLE_EMPLOYEE');

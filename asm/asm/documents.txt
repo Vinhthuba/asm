@@ -1,0 +1,34 @@
+B1 : tạo databse employee_directory gồm bảng employee với các thuộc tính (id , fristName, lastName),
+		:spring_security2 gồm 2 bảng users với thuộc tính( username, password,enabled)
+
+B2: tạo project với các Dependency như : Spring boot dev tool, Spring security, Spring boot maven,MySQL , Spring JPA
+
+B3: viết các config database và jpa trong file application.properties
+B4: trong package cam.example.testapi : tạo các packages cần thiết : 1 config, 2 dao, 3 entity, 4 rest, 5 service
+B5: trong package config tạo 2 lớp : DataSourceConfig (kết nối đến database = dataSource)
+				    : DemoSecurityConfig ( sử dụng thư viện jdbc authentication và HttpSecurity) để tạo hàm configure.
+
+B5: trong package Entity tạo lớp Customer với các thực thể tương ứng
+
+B6: trong package Dao tạo lớp CustomerRepository extend JpaRepository truyền vào Entity và Interger
+	+ khởi tạo các phương thức cần thiết findAllOrderByLastNameAsc và findByFirstNameContainsOrLastNameContainsAllIgnoreCase
+
+B6: trong package Service tạo interface CustomerService với các phương thức : 
+	+ findAll
+	+ findById
+	+ save
+	+deleteById
+	+searchBy
+tiếp tục tạo lớp CustomerServiceImpl impl của interface CustomerService với các phương thức tương ứng .
+
+
+B7: trong package rest tạo file CustomerRestController(truyền vào repository)
+sử dụng các phương thức
+@RestController
+@RequestMapping
+ @GetMapping , @PostMapping, @DeleteMapping, @PutMapping để tạo các url và chức năng tương ứngg
+
++tạo 2 lớp thông báo lỗi CustomerNotFoundAdvice, CustomerNotFoundException
+-------------------------------------------------------------------------------------------
+
+ 
